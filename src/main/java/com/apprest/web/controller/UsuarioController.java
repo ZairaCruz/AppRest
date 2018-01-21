@@ -4,19 +4,21 @@ import java.util.List;
 
 import com.apprest.web.model.Usuario;
 import com.apprest.web.model.UsuarioDao;
+import com.apprest.web.model.Valor;
 
 public class UsuarioController {
 	
 private Usuario usuario = new Usuario();
 	
-	public String irPara(Usuario usuario) {
-		String irPara = "erro_login";
+	public Valor irPara(Usuario usuario) {
+		Valor valor = new Valor();
+		valor.setValor(false); 
 		Usuario usuarioConsultado = new UsuarioDao().selectLoginAndSenha(usuario);
 		if (usuarioConsultado != null) {
-			irPara = "login";
+			valor.setValor(true); 
 		}
-		System.out.println("Controller: "+ irPara);
-		return irPara;
+		System.out.println("Controller: "+ valor.isValor());
+		return valor;
 	}
 	public void salvar(Usuario usuario) {
 		if (usuario.getId() == null) {

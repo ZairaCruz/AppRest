@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.apprest.web.controller.UsuarioController;
 import com.apprest.web.model.Usuario;
+import com.apprest.web.model.Valor;
 
 @Path("/usuario")
 public class UsuarioService {
@@ -33,15 +34,14 @@ public class UsuarioService {
 		controller.salvar(usuario);
 	}
 	
-	// TODO retorna a palavra Unexpected 'l'
 	@POST
 	@Path("/logar")
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_JSON})
-	public String logar(Usuario usuario) {
-//		Usuario usuarioLogado = new Usuario();
-//		UsuarioDao dao = new UsuarioDao();
-		return controller.irPara(usuario);
+	public Valor logar(Usuario usuario) {
+		Valor valor = new Valor();
+		valor = controller.irPara(usuario);
+		return valor;
 	}
 
 	@POST
