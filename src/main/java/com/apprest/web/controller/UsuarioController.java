@@ -10,16 +10,18 @@ public class UsuarioController {
 	
 private Usuario usuario = new Usuario();
 	
-	public Valor irPara(Usuario usuario) {
+	public Usuario login(Usuario usuario) {
 		Valor valor = new Valor();
-		valor.setValor(false); 
 		Usuario usuarioConsultado = new UsuarioDao().selectLoginAndSenha(usuario);
-		if (usuarioConsultado != null) {
-			valor.setValor(true); 
-		}
-		System.out.println("Controller: "+ valor.isValor());
-		return valor;
+		return usuarioConsultado;
 	}
+	
+	public Usuario buscar(Long id) {
+		Usuario usuarioConsultado = new UsuarioDao().buscarPorId(id);
+		System.out.println(usuarioConsultado);
+		return usuarioConsultado;
+	}
+	
 	public void salvar(Usuario usuario) {
 		if (usuario.getId() == null) {
 			new UsuarioDao().insertUsuario(usuario);

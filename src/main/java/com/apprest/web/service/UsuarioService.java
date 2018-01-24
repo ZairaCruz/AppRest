@@ -7,6 +7,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.apprest.web.controller.UsuarioController;
@@ -38,10 +39,9 @@ public class UsuarioService {
 	@Path("/logar")
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_JSON})
-	public Valor logar(Usuario usuario) {
-		Valor valor = new Valor();
-		valor = controller.irPara(usuario);
-		return valor;
+	public Usuario login(Usuario usuario) {
+		Usuario usuarioConsultado = controller.login(usuario);
+		return usuarioConsultado;
 	}
 
 	@POST
@@ -50,6 +50,15 @@ public class UsuarioService {
 	@Produces({MediaType.APPLICATION_JSON})
 	public void deletar(Usuario usuario) {
 		controller.apagar(usuario);
+	}
+	
+	@GET
+	@Path("/buscar")
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON})
+	public Usuario buscar(@QueryParam("id") Long id) {
+		Usuario usuarioBuscado = controller.buscar(id);
+		return usuarioBuscado;
 	}
 	
 

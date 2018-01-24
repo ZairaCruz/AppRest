@@ -2,16 +2,18 @@ package com.apprest.web.model;
 
 public class Valor {
 
-	private boolean valor;
+	private Long valor;
 
-	public boolean isValor() {
+	public Long getValor() {
 		return valor;
 	}
 
-	public void setValor(boolean valor) {
+	public void setValor(Long valor) {
 		this.valor = valor;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "Valor [valor=" + valor + "]";
+	}	
 }

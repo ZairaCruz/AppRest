@@ -16,9 +16,8 @@ public class UsuarioDao extends ConnectionFactory{
 	private Usuario usuario;
 	
 	public Usuario selectLoginAndSenha(Usuario usuario){
-
 		
-		String sql = "SELECT id FROM usuario WHERE login = ? AND senha = ?";
+		String sql = "SELECT id, login, senha FROM usuario WHERE login = ? AND senha = ?";
 		Usuario user = null;
 		try {
 			Connection con;
@@ -33,6 +32,35 @@ public class UsuarioDao extends ConnectionFactory{
 			if (rs.next()){
 				user = new Usuario();
 				user.setId(rs.getLong("id"));
+				user.setLogin(rs.getString("login"));
+				user.setSenha(rs.getString("senha"));
+			}
+		}catch (Exception e){
+			System.err.println("Erro: ");
+			e.printStackTrace();
+		}finally {
+			closeConnection(con, ps, rs);
+		}
+		return user;
+	}
+	
+public Usuario buscarPorId(Long id){
+		
+		String sql = "SELECT id, login, senha FROM usuario WHERE id = ? ";
+		Usuario user = null;
+		try {
+			Connection con;
+			PreparedStatement ps;
+			ResultSet rs;
+			con = openConnection();
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, id);
+			rs = ps.executeQuery();
+			if (rs.next()){
+				user = new Usuario();
+				user.setId(rs.getLong("id"));
+				user.setLogin(rs.getString("login"));
+				user.setSenha(rs.getString("senha"));
 			}
 		}catch (Exception e){
 			System.err.println("Erro: ");
