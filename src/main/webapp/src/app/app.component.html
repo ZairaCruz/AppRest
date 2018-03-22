@@ -1,0 +1,108 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container" style="width: 600px;">
+
+    <h1>App Rest</h1>
+    <h2>Angular & Java & Json</h2>
+
+  <div class="panel panel-default" align="center">
+    <div class="panel-heading">
+      <h3>Login de Usuário</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <form #login>
+            <div class="form-group">
+              <input type="text" name="login" class="form-control" placeholder="Login" [(ngModel)]="usuarioDto.login">
+            </div>
+            <div class="form-group">
+              <input type="password" name="senha" class="form-control" placeholder="Senha" [(ngModel)]="usuarioDto.senha">
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3" align="center">
+                  <button type="button" class="btn btn-primary  btn-sm btn-block" (click)="loginUsuario(usuarioDto)">Login</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default" align="center" *ngIf="usuario !== null && usuarioLogado">
+    <div class="panel-heading">
+      <h3>Usuário Logado</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <form #login>
+            <div class="form-group">
+              <input type="text" name="id" class="form-control" value="usuario.id">
+            </div>
+            <div class="form-group">
+              <input type="text" name="login" class="form-control" value="usuario.login">
+            </div>
+            <div class="form-group">
+              <input type="text" name="senha" class="form-control" value="usuario.senha">
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3" align="center">
+                  <button type="button" class="btn btn-primary  btn-sm btn-block" (click)="loginUsuario(usuarioDto)">Login</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--<div class="panel panel-default" align="center" *ngIf="usuario !== null && usuarioLogado">-->
+  <div class="panel panel-default" align="center">
+
+  <!-- Default panel contents -->
+    <div class="panel-heading">
+      <h3>Listagem</h3>
+    </div>
+    <div class="panel-body" align="center">
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3" align="center">
+            <button type="button" class="btn btn-primary  btn-sm btn-block" (click)="listagemUsuarios()">Listar</button>
+            <button type="button" class="btn btn-secondary btn-sm btn-block" (click)="usuarios = []">Limpar</button>
+          </div>
+        </div>
+      </div>
+
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Login</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of usuarios">
+          <td>{{ user.id }}</td>
+          <td>{{ user.login }}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+
+
+</div>
+
+
+
+
+
